@@ -13,7 +13,7 @@ use tokio::runtime::Runtime;
 
 #[derive(Parser)]
 #[command(
-    name = "minikjpeg",
+    name = "minikJPEG",
     about = "Algısal kayıpsız JPEG optimizasyon aracı",
     version = env!("CARGO_PKG_VERSION"),
     long_about = None
