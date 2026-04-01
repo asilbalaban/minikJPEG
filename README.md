@@ -12,6 +12,18 @@
 - **Tauri GUI** — Sürükle-bırak arayüzü, ilerleme çubuğu, sonuç özeti
 - **CLI aracı** — Otomasyon için komut satırı desteği
 
+## İndirme (Windows)
+
+Derlemeden kullanmak isteyenler için hazır kurulum dosyaları:
+
+| Dosya | Tür | Yol |
+|-------|-----|-----|
+| `minikJPEG_0.1.0_x64-setup.exe` | NSIS Installer | `target/release/bundle/nsis/` |
+| `minikJPEG_0.1.0_x64_en-US.msi` | MSI Installer | `target/release/bundle/msi/` |
+| `minikJPEG.exe` | Taşınabilir (kurulum gerektirmez) | `target/release/` |
+
+> Kaynak koddan derlemek için aşağıdaki gereksinimlere bakın.
+
 ## Gereksinimler
 
 - Rust 1.75+
