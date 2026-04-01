@@ -1,0 +1,20 @@
+[package]
+name = "minikjpg-cli"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "minikjpg"
+path = "src/main.rs"
+
+[dependencies]
+minikjpg-core = { path = "../minikjpg-core" }
+anyhow.workspace = true
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+clap = { version = "4", features = ["derive"] }
+indicatif = "0.17"
+colored = "2"

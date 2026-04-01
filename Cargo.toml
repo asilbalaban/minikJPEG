@@ -1,0 +1,45 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/minikjpg-core",
+    "crates/minikjpg-cli",
+    "crates/minikjpg-tauri",
+]
+
+[workspace.dependencies]
+thiserror = "2"
+anyhow = "1"
+tokio = { version = "1", features = ["full"] }
+rayon = "1.10"
+image = { version = "0.25", default-features = false, features = ["jpeg"] }
+mozjpeg = "0.10"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+
+# Dev modda CPU-yoğun crate'ler için optimizasyon aç
+# Tauri/React kodu yavaş derlense de sıkıştırma hızlı çalışır
+[profile.dev.package.mozjpeg]
+opt-level = 3
+
+[profile.dev.package.mozjpeg-sys]
+opt-level = 3
+
+[profile.dev.package.minikjpg-core]
+opt-level = 3
+
+[profile.dev.package.image]
+opt-level = 3
+
+[profile.dev.package.rayon]
+opt-level = 3
+
+[profile.dev.package.rayon-core]
+opt-level = 3

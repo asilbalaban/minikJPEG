@@ -1,0 +1,39 @@
+.panel {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 16px;
+  gap: 20px;
+}
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 80px;
+}
+
+.summaryLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.savingsBig {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--success);
+}
+
+.compressed { color: var(--accent); font-weight: 600; }
+.success { color: var(--success); font-weight: 600; }
+.failed { color: var(--error); font-weight: 600; }

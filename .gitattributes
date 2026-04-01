@@ -1,0 +1,12 @@
+# Tüm metin dosyalarını LF olarak normalize et
+* text=auto eol=lf
+
+# Binary dosyalar — satır sonu dönüştürme yapma
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.icns binary
+*.eps binary
+*.exe binary
+*.msi binary
