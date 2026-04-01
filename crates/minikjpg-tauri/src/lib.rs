@@ -12,7 +12,7 @@ pub fn run() {
     tracing_subscriber::fmt()
         .with_env_filter(
             tracing_subscriber::EnvFilter::from_default_env()
-                .add_directive("minikjpg=info".parse().unwrap()),
+                .add_directive("minikjpeg=info".parse().unwrap()),
         )
         .init();
 

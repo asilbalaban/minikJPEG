@@ -13,7 +13,7 @@ use tokio::runtime::Runtime;
 
 #[derive(Parser)]
 #[command(
-    name = "minikjpg",
+    name = "minikjpeg",
     about = "Algısal kayıpsız JPEG optimizasyon aracı",
     version = env!("CARGO_PKG_VERSION"),
     long_about = None
@@ -105,7 +105,7 @@ fn main() -> Result<()> {
         } => {
             if verbose {
                 tracing_subscriber::fmt()
-                    .with_env_filter("minikjpg=debug")
+                    .with_env_filter("minikjpeg=debug")
                     .init();
             }
 

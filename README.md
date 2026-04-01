@@ -39,7 +39,7 @@ Derlemeden kullanmak isteyenler için hazır kurulum dosyaları:
 cd frontend && npm install
 
 # CLI aracı derle
-cargo build --release -p minikjpg-cli
+cargo build --release -p minikjpeg-cli
 
 # GUI geliştirme sunucusu başlat
 cargo tauri dev
@@ -49,30 +49,30 @@ cargo tauri dev
 
 ```bash
 # Tek dosya optimize et
-minikjpg compress resim.jpg --ssim 0.92
+minikjpeg compress resim.jpg --ssim 0.92
 
 # Çıktıyı farklı konuma kaydet
-minikjpg compress resim.jpg --output resim_opt.jpg
+minikjpeg compress resim.jpg --output resim_opt.jpg
 
 # Klasördeki tüm JPEG'leri optimize et
-minikjpg batch ./fotograflar --output-dir ./optimize --recursive
+minikjpeg batch ./fotograflar --output-dir ./optimize --recursive
 
 # Agresif sıkıştırma (web için)
-minikjpg compress resim.jpg --ssim 0.87 --suffix _web
+minikjpeg compress resim.jpg --ssim 0.87 --suffix _web
 ```
 
 ## Mimari
 
 ```
 crates/
-  minikjpg-core/     # Çekirdek kütüphane
+  minikjpeg-core/     # Çekirdek kütüphane
     compression/     # mozjpeg entegrasyonu, pipeline
     quality/         # SSIM, PSNR, kalite arama döngüsü
     metadata/        # EXIF/ICC segment yönetimi
     batch/           # rayon tabanlı paralel işlem
     io/              # Async dosya okuma/yazma
-  minikjpg-cli/      # CLI binary (clap)
-  minikjpg-tauri/    # Tauri masaüstü uygulaması
+  minikjpeg-cli/      # CLI binary (clap)
+  minikjpeg-tauri/    # Tauri masaüstü uygulaması
 frontend/            # React/TypeScript GUI
 ```
 
