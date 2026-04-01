@@ -2,5 +2,5 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    minikjpg_tauri_lib::run();
+    minikjpeg_tauri_lib::run();
 }

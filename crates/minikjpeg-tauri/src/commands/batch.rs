@@ -1,6 +1,6 @@
 use crate::commands::compress::CompressionOptionsDto;
 use crate::state::{AppState, JobState};
-use minikjpg_core::{
+use minikjpeg_core::{
     batch::processor::{process_batch, BatchInput, ProgressCallback},
     make_output_path, CompressionOptions, CompressionResult,
 };

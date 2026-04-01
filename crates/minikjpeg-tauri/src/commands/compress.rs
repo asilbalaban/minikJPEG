@@ -1,4 +1,4 @@
-use minikjpg_core::{compress_jpeg, make_output_path, CompressionOptions, CompressionResult};
+use minikjpeg_core::{compress_jpeg, make_output_path, CompressionOptions, CompressionResult};
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 use tauri::State;

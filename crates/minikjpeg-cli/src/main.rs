@@ -2,7 +2,7 @@ use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use colored::Colorize;
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
-use minikjpg_core::{
+use minikjpeg_core::{
     batch::processor::{find_jpeg_files, process_batch, BatchInput, ProgressCallback},
     compress_jpeg, make_output_path, CompressionOptions,
 };
@@ -230,7 +230,7 @@ fn main() -> Result<()> {
     Ok(())
 }
 
-fn print_single_result(result: &minikjpg_core::CompressionResult) {
+fn print_single_result(result: &minikjpeg_core::CompressionResult) {
     println!();
     println!("{}", "✓ Tamamlandı".green().bold());
     println!(
@@ -252,7 +252,7 @@ fn print_single_result(result: &minikjpg_core::CompressionResult) {
     println!("  Çıktı           : {}", result.output_path.dimmed());
 }
 
-fn print_batch_result(result: &minikjpg_core::batch::processor::BatchResult) {
+fn print_batch_result(result: &minikjpeg_core::batch::processor::BatchResult) {
     println!();
     println!("{}", "─".repeat(50));
     println!("{}", "  Batch İşlem Özeti".bold());

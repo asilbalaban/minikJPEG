@@ -1,5 +1,5 @@
 [package]
-name = "minikjpg-cli"
+name = "minikjpeg-cli"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,7 +8,7 @@ name = "minikjpg"
 path = "src/main.rs"
 
 [dependencies]
-minikjpg-core = { path = "../minikjpg-core" }
+minikjpeg-core = { path = "../minikjpeg-core" }
 anyhow.workspace = true
 tokio.workspace = true
 serde.workspace = true

@@ -9,7 +9,7 @@
 
 # ── Tauri ────────────────────────────────────────────────────
 # gen/schemas Tauri tarafından otomatik üretilir, commit edilmez
-/crates/minikjpg-tauri/gen/
+/crates/minikjpeg-tauri/gen/
 
 # ── Geçici dosyalar ──────────────────────────────────────────
 *.tmp_minik

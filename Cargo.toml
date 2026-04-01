@@ -1,9 +1,9 @@
 [workspace]
 resolver = "2"
 members = [
-    "crates/minikjpg-core",
-    "crates/minikjpg-cli",
-    "crates/minikjpg-tauri",
+    "crates/minikjpeg-core",
+    "crates/minikjpeg-cli",
+    "crates/minikjpeg-tauri",
 ]
 
 [workspace.dependencies]
@@ -32,7 +32,7 @@ opt-level = 3
 [profile.dev.package.mozjpeg-sys]
 opt-level = 3
 
-[profile.dev.package.minikjpg-core]
+[profile.dev.package.minikjpeg-core]
 opt-level = 3
 
 [profile.dev.package.image]
