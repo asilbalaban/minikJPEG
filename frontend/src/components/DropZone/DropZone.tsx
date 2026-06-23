@@ -18,7 +18,7 @@ export function DropZone() {
         } else if (event.payload.type === "drop") {
           setIsDragActive(false);
           const paths: string[] = event.payload.paths.filter((p: string) =>
-            /\.(jpg|jpeg)$/i.test(p)
+            /\.(jpg|jpeg|png)$/i.test(p)
           );
           if (paths.length > 0) {
             addFiles(paths);
@@ -41,7 +41,7 @@ export function DropZone() {
     try {
       const selected = await open({
         multiple: true,
-        filters: [{ name: "JPEG", extensions: ["jpg", "jpeg"] }],
+        filters: [{ name: "Görüntü (JPEG / PNG)", extensions: ["jpg", "jpeg", "png"] }],
       });
       console.log("dialog selected:", selected);
       if (selected) {
@@ -77,7 +77,7 @@ export function DropZone() {
           <p className={styles.text}>Dosyaları bırakın...</p>
         ) : (
           <>
-            <p className={styles.text}>JPEG dosyalarını buraya sürükleyin</p>
+            <p className={styles.text}>JPEG veya PNG dosyalarını buraya sürükleyin</p>
             <p className={styles.sub}>veya seçmek için tıklayın</p>
           </>
         )}

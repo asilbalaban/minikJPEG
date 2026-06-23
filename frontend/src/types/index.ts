@@ -12,10 +12,11 @@ export interface CompressionOptions {
 export const defaultOptions: CompressionOptions = {
   ssimThreshold: 0.92,
   psnrThreshold: 40.0,
-  maxQuality: 95,
-  minQuality: 20,
+  // Sabit %100 kalite: adaptif arama kapalı, min=max=100 → her zaman kalite 100.
+  maxQuality: 100,
+  minQuality: 100,
   preserveMetadata: true,
-  adaptiveQuality: true,
+  adaptiveQuality: false,
 };
 
 export interface CompressionResult {

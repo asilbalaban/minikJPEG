@@ -8,8 +8,14 @@ name = "minikjpeg_tauri_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [[bin]]
-name = "minikjpeg-tauri"
+name = "minikJPEG"
 path = "src/main.rs"
+
+[features]
+# Üretim derlemelerinde gömülü frontend asset'lerinin tauri:// protokolüyle
+# servis edilmesi için gerekli. `cargo tauri build` bunu otomatik etkinleştirir;
+# doğrudan `cargo build --release` kullanırken `--features custom-protocol` ekle.
+custom-protocol = ["tauri/custom-protocol"]
 
 [build-dependencies]
 tauri-build = { version = "2", features = [] }
@@ -25,4 +31,4 @@ tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 uuid = { version = "1", features = ["v4"] }
-image = { version = "0.25", default-features = false, features = ["jpeg"] }
+image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
