@@ -47,7 +47,16 @@ pub async fn start_batch(
         .into_iter()
         .map(|p| {
             let input_path = PathBuf::from(&p);
-            let output_path = make_output_path(&input_path, output_dir.as_deref(), &suffix);
+            // PNG icin her zaman kaynak dosyanin yanina ayni adla JPG yaz.
+            let is_png = input_path
+                .extension()
+                .and_then(|ext| ext.to_str())
+                .is_some_and(|ext| ext.eq_ignore_ascii_case("png"));
+            let output_path = if is_png {
+                make_output_path(&input_path, None, "")
+            } else {
+                make_output_path(&input_path, output_dir.as_deref(), &suffix)
+            };
             BatchInput {
                 input_path,
                 output_path,

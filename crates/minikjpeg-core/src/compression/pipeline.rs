@@ -131,17 +131,29 @@ pub async fn compress_jpeg(
         }
     }
 
+    // Varsayilan 100 kalite JPEG optimizasyonu icin korunur. PNG'den uretilen
+    // JPG'de ise daha kucuk bir alternatif elde etmek icin kaliteyi sinirla.
+    let mut png_options = options.clone();
+    if input_kind == ImageKind::Png
+        && !options.adaptive_quality
+        && options.min_quality == 100
+        && options.max_quality == 100
+    {
+        png_options.min_quality = 20;
+        png_options.max_quality = 85;
+    }
+
     // 4. İçerik karmaşıklığı analizi → kalite aralığını ayarla
-    let (min_q, max_q) = if options.adaptive_quality {
+    let (min_q, max_q) = if png_options.adaptive_quality {
         let complexity = analyze_content_complexity(&image);
         let (suggested_min, suggested_max) = suggest_quality_range(complexity);
         tracing::debug!(complexity, suggested_min, suggested_max, "İçerik analizi");
         (
-            suggested_min.max(options.min_quality),
-            suggested_max.min(options.max_quality),
+            suggested_min.max(png_options.min_quality),
+            suggested_max.min(png_options.max_quality),
         )
     } else {
-        (options.min_quality, options.max_quality)
+        (png_options.min_quality, png_options.max_quality)
     };
 
     // 5. SSIM tabanlı ikili arama
