@@ -9,14 +9,20 @@ export interface CompressionOptions {
   adaptiveQuality: boolean;
 }
 
+// Kalite eşiği kaydırıcısı iki ölçüyü birlikte taşır: SSIM eşiği ve ona bağlı PSNR eşiği.
+// 0.87 → 35 dB (web), 0.92 → 40 dB (dengeli), 0.96 → 44 dB (baskı).
+export function psnrForSsim(ssim: number): number {
+  return Math.round((40 + (ssim - 0.92) * 100) * 10) / 10;
+}
+
 export const defaultOptions: CompressionOptions = {
   ssimThreshold: 0.92,
-  psnrThreshold: 40.0,
-  // Sabit %100 kalite: adaptif arama kapalı, min=max=100 → her zaman kalite 100.
-  maxQuality: 100,
-  minQuality: 100,
+  psnrThreshold: psnrForSsim(0.92),
+  // Her görsel için eşiği tutturan en düşük kalite bu aralıkta aranır.
+  maxQuality: 95,
+  minQuality: 20,
   preserveMetadata: true,
-  adaptiveQuality: false,
+  adaptiveQuality: true,
 };
 
 export interface CompressionResult {

@@ -143,14 +143,18 @@ pub async fn compress_jpeg(
         png_options.max_quality = 85;
     }
 
-    // 4. İçerik karmaşıklığı analizi → kalite aralığını ayarla
+    // 4. İçerik karmaşıklığı analizi → aramanın alt sınırını yükselt.
+    // Üst sınır kullanıcının seçtiği değerde kalır: analiz üst sınırı kısarsa
+    // arama eşiği tutturamadan biter ve eşiğin altında dosya yazılır.
     let (min_q, max_q) = if png_options.adaptive_quality {
         let complexity = analyze_content_complexity(&image);
-        let (suggested_min, suggested_max) = suggest_quality_range(complexity);
-        tracing::debug!(complexity, suggested_min, suggested_max, "İçerik analizi");
+        let (suggested_min, _) = suggest_quality_range(complexity);
+        tracing::debug!(complexity, suggested_min, "İçerik analizi");
         (
-            suggested_min.max(png_options.min_quality),
-            suggested_max.min(png_options.max_quality),
+            suggested_min
+                .max(png_options.min_quality)
+                .min(png_options.max_quality),
+            png_options.max_quality,
         )
     } else {
         (png_options.min_quality, png_options.max_quality)

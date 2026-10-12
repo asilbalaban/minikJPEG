@@ -1,5 +1,6 @@
 import { open } from "@tauri-apps/plugin-dialog";
 import { useSettingsStore } from "../../store";
+import { psnrForSsim } from "../../types";
 import styles from "./Settings.module.css";
 
 const SSIM_PRESETS = [
@@ -11,6 +12,12 @@ const SSIM_PRESETS = [
 export function Settings() {
   const { options, outputDir, suffix, setOption, setOutputDir, setSuffix } =
     useSettingsStore();
+
+  // Eşik değişince bağlı PSNR eşiği de birlikte güncellenir.
+  function setThreshold(ssim: number) {
+    setOption("ssimThreshold", ssim);
+    setOption("psnrThreshold", psnrForSsim(ssim));
+  }
 
   async function pickOutputDir() {
     const selected = await open({ directory: true, multiple: false });
@@ -35,9 +42,7 @@ export function Settings() {
           max={0.99}
           step={0.01}
           value={options.ssimThreshold}
-          onChange={(e) =>
-            setOption("ssimThreshold", parseFloat(e.target.value))
-          }
+          onChange={(e) => setThreshold(parseFloat(e.target.value))}
           className={styles.slider}
         />
         <div className={styles.presets}>
@@ -49,7 +54,7 @@ export function Settings() {
                   ? styles.presetActive
                   : ""
               }`}
-              onClick={() => setOption("ssimThreshold", p.value)}
+              onClick={() => setThreshold(p.value)}
               title={p.desc}
             >
               {p.label}
